@@ -1,24 +1,30 @@
 from pessoa import Pessoa
 from cidade import Cidade
 from produto import Produto
+from categoria import Categoria
 
 class Pedido:
 
-    def __init__(self, id, end):
-        self.id = id
+    id = 1
+    def __init__(self, end):
         self.end = end
-        self.produto = []
+        self.produtos = []
         self.cliente = Pessoa("Carlos")
+        self.id = Pedido.id
+        Pedido.id += 1
 
     def add_produto(self, produto):
-        self.produto.append(produto)
+        self.produtos.append(produto)
 
     def __str__(self):
-        return f"Número do pedido: {self.id}, Endereço: {self.end}, Produtos pedidos: {self.produto}, Cliente: {self.cliente}"
-
-    
-produto1 = Produto()
-p1 = Pedido(2, "91330190")
-p1.add_produto(produto1)
-
-print(p1)
+        texto = "Endereço do pedido: " + self.end + "\n"
+        texto += "ID pedido: " + str(self.id) + "\n"
+        texto += "Cliente: " + self.cliente.nome + "\n"
+        texto += "Produtos:\n"
+        if len(self.produtos) == 0:
+            texto += "Não há produtos no pedido."
+        else:
+            for p in self.produtos:
+                texto += " - " + p.nome + " - " + str(p.categoria) + "\n"
+        return texto
+        
