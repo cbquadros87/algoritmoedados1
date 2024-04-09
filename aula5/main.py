@@ -4,8 +4,6 @@ from bicicleta import *
 from veiculo import *
 from automovel import *
 
-
-
 moto = Moto("BMW", 2, "Honda", 20, True)
 moto.imprimirInformacoes()
 
